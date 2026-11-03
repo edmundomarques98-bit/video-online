@@ -85,12 +85,12 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
     <div class="row" style="top:1410px"><span class="mask"><span id="s3d" class="anton word yel" style="font-size:120px">Grátis e rápido</span></span></div>
   </div>
 
-  <!-- CENA 4: só na black friday -->
+  <!-- CENA 4: entrega (clipe Veo) -->
   <div id="s4" class="abs" style="inset:0">
-    <div class="row" style="top:470px"><div id="s4a" style="font-weight:900;font-size:90px;letter-spacing:6px">SÓ NA</div></div>
-    <div class="row" style="top:590px"><div id="s4b" class="anton neon" style="font-size:390px">Black</div></div>
-    <div class="row" style="top:990px"><div id="s4c" class="anton yel" style="font-size:390px">Friday</div></div>
-    <div class="row" style="top:1430px"><img id="s4logo" src="assets/logo-moveletro.png" style="width:600px;border-radius:18px;box-shadow:0 0 50px rgba(255,200,0,.35)"></div>
+    <img id="veo" class="abs" src="assets/veo/f0001.jpg" style="inset:0;width:1080px;height:1920px;object-fit:cover">
+    <div class="abs" style="left:0;right:0;top:0;height:720px;background:linear-gradient(180deg,rgba(0,0,0,.55),transparent)"></div>
+    <div class="abs" style="left:0;right:0;bottom:0;height:620px;background:linear-gradient(0deg,rgba(0,0,0,.75),transparent)"></div>
+    <div class="row" style="top:1530px"><div class="pill" id="s4pill" style="font-size:64px;padding:16px 50px;font-family:Anton,sans-serif;letter-spacing:1px;text-transform:uppercase">Frete e montagem grátis</div></div>
   </div>
 
   <!-- CENA 5: cartaz final -->
@@ -218,52 +218,35 @@ const fallBoxes = fall.map(f => {
   return b;
 });
 
-// FLASH → CENA 4 (8.5 – 11.5s)
+// FLASH → CENA 4: entrega com clipe Veo (8.5 – 14.5s)
 tl.to('#flash', { opacity: 1, duration: .15, ease: 'power2.in' }, 8.35)
   .set(['#s3'], { autoAlpha: 0 }, 8.5)
   .set(fallBoxes.map(b => b.holder), { opacity: 0 }, 8.5)
-  .set('#seal', { opacity: 0 }, 8.5)
   .set('#s4', { autoAlpha: 1 }, 8.5)
   .to('#flash', { opacity: 0, duration: .45, ease: 'power2.out' }, 8.5)
-  .from('#s4a', { y: 50, opacity: 0, duration: .6 }, 8.55)
-  .from('#s4b', { scale: 1.25, opacity: 0, duration: .9 }, 8.6)
-  .to('#s4b', { keyframes: [{ opacity: .3, duration: .05 }, { opacity: 1, duration: .06 }, { opacity: .5, duration: .04 }, { opacity: 1, duration: .07 }], ease: 'none' }, 9.15)
-  .from('#s4c', { yPercent: 40, opacity: 0, duration: .8 }, 8.8)
-  .from('#s4logo', { y: 60, opacity: 0, duration: .7 }, 9.2)
-  .to('#s4', { scale: 1.04, duration: 2.6, ease: 'none', transformOrigin: '50% 50%' }, 8.7);
+  .fromTo('#seal', { y: -600, scale: .45 }, { y: -600, scale: .58, duration: .8, ease: 'back.out(1.8)' }, 8.5)
+  .fromTo('#s4pill', { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: .6, ease: 'back.out(1.8)' }, 9.6)
+  .fromTo('#sweepBar', { left: '-60%' }, { left: '130%', duration: 1.0, ease: 'power2.inOut' }, 10.5)
+  .to('#s4pill', { scale: 1.05, duration: .3, ease: 'power2.out', yoyo: true, repeat: 1 }, 12.2);
 
-const drift = [
-  { x0: 1250, x1: -200, y: 360, s: 130, d: 8.5, r: 20 },
-  { x0: 1300, x1: -250, y: 1790, s: 220, d: 8.6, r: -25 },
-  { x0: -250, x1: 1250, y: 150, s: 100, d: 9.0, r: 30 }];
-const driftBoxes = drift.map(f => {
-  const b = makeBox(f.s);
-  gsap.set(b.holder, { x: f.x0, y: f.y, opacity: 0 });
-  tl.set(b.holder, { opacity: 1 }, f.d)
-    .to(b.holder, { x: f.x1, duration: 2.9, ease: 'none' }, f.d)
-    .fromTo(b.cube, { rotationX: -20, rotationY: 0, rotationZ: 0 }, { rotationX: -20 + f.r, rotationY: f.r * 8, rotationZ: f.r, duration: 2.9, ease: 'none' }, f.d);
-  return b;
-});
-
-// FLASH → CENA 5 cartaz final (11.5 – 15s)
-tl.to('#flash', { opacity: 1, duration: .15, ease: 'power2.in' }, 11.35)
-  .set('#s4', { autoAlpha: 0 }, 11.5)
-  .set(driftBoxes.map(b => b.holder), { opacity: 0 }, 11.5)
-  .set('#fin', { autoAlpha: 1 }, 11.5)
-  .to('#flash', { opacity: 0, duration: .45, ease: 'power2.out' }, 11.5)
-  .fromTo('#seal', { opacity: 1, scale: .7 }, { scale: .88, duration: .8, ease: 'back.out(1.8)' }, 11.5)
-  .from('#fchama .word', { yPercent: 110, duration: .6, stagger: .08 }, 11.7)
-  .from('#fwa', { scale: 0, rotation: -40, duration: .6, ease: 'back.out(2.2)' }, 11.85)
-  .fromTo('#fpill', { clipPath: 'inset(0% 50% 0% 50% round 999px)' }, { clipPath: 'inset(0% 0% 0% 0% round 999px)', duration: .6, ease: 'expo.inOut' }, 11.95)
-  .from('#fa', { y: 30, opacity: 0, duration: .5 }, 12.1)
-  .from('#fb', { yPercent: 105, duration: .6 }, 12.2)
-  .from('#fc', { yPercent: 105, duration: .6 }, 12.35)
-  .fromTo('#sweepBar', { left: '-60%' }, { left: '130%', duration: 1.0, ease: 'power2.inOut' }, 13.0)
-  .to('#fpill', { scale: 1.06, duration: .3, ease: 'power2.out', yoyo: true, repeat: 1 }, 13.6);
+// FLASH → CENA 5 cartaz final (14.5 – 18s)
+tl.to('#flash', { opacity: 1, duration: .15, ease: 'power2.in' }, 14.35)
+  .set('#s4', { autoAlpha: 0 }, 14.5)
+    .set('#fin', { autoAlpha: 1 }, 14.5)
+  .to('#flash', { opacity: 0, duration: .45, ease: 'power2.out' }, 14.5)
+  .fromTo('#seal', { opacity: 1, y: -458, scale: .7 }, { y: -458, scale: .88, duration: .8, ease: 'back.out(1.8)' }, 14.5)
+  .from('#fchama .word', { yPercent: 110, duration: .6, stagger: .08 }, 14.7)
+  .from('#fwa', { scale: 0, rotation: -40, duration: .6, ease: 'back.out(2.2)' }, 14.85)
+  .fromTo('#fpill', { clipPath: 'inset(0% 50% 0% 50% round 999px)' }, { clipPath: 'inset(0% 0% 0% 0% round 999px)', duration: .6, ease: 'expo.inOut' }, 14.95)
+  .from('#fa', { y: 30, opacity: 0, duration: .5 }, 15.1)
+  .from('#fb', { yPercent: 105, duration: .6 }, 15.2)
+  .from('#fc', { yPercent: 105, duration: .6 }, 15.35)
+  .fromTo('#sweepBar', { left: '-60%' }, { left: '130%', duration: 1.0, ease: 'power2.inOut' }, 16)
+  .to('#fpill', { scale: 1.06, duration: .3, ease: 'power2.out', yoyo: true, repeat: 1 }, 16.6);
 
 const corner = [
-  { x: 130, y: 1745, s: 240, d: 11.9, r: -16 },
-  { x: 950, y: 1730, s: 270, d: 12.0, r: 14 }];
+  { x: 130, y: 1745, s: 240, d: 14.9, r: -16 },
+  { x: 950, y: 1730, s: 270, d: 15, r: 14 }];
 const cornerBoxes = corner.map(f => {
   const b = makeBox(f.s);
   gsap.set(b.holder, { x: f.x, y: 2200, opacity: 0 });
@@ -272,19 +255,27 @@ const cornerBoxes = corner.map(f => {
     .fromTo(b.cube, { rotationX: -40, rotationY: f.r * 3, rotationZ: f.r }, { rotationX: -14, rotationY: f.r * 1.6, rotationZ: f.r * .4, duration: 1, ease: 'power3.out' }, f.d);
   return { b, f };
 });
-tl.to({}, { duration: .01 }, 15.1); // duração total
+tl.to({}, { duration: .01 }, 18.1); // duração total
 
 // movimento contínuo (não-timeline)
 function updIdle(t) {
   $('#rays').style.transform = `rotate(${t * 4}deg)`;
   if (t > 1.8) $('#sealGlow').style.filter = `blur(28px) brightness(${1.5 + .25 * Math.sin(t * 3.2)}) saturate(1.4)`;
-  if (t > 13) cornerBoxes.forEach(({ b, f }, i) => {
-    b.holder.style.translate = `0 ${Math.sin((t - 13) * 2 + i * 1.6) * 10}px`;
+  if (t > 16) cornerBoxes.forEach(({ b, f }, i) => {
+    b.holder.style.translate = `0 ${Math.sin((t - 16) * 2 + i * 1.6) * 10}px`;
   });
 }
 
-window.seek = t => { tl.seek(t, false); updParticles(t); updIdle(t); };
-window.DURATION = 15;
+const veo = $('#veo'), VEO_N = 180;
+window.seek = async t => {
+  tl.seek(t, false); updParticles(t); updIdle(t);
+  if (t >= 8.5 && t < 14.5) {
+    const idx = Math.min(VEO_N, Math.floor((t - 8.5) * 30 + 1e-6) + 1);
+    const src = `assets/veo/f${String(idx).padStart(4, '0')}.jpg`;
+    if (!veo.src.endsWith(src)) { veo.src = src; await veo.decode().catch(() => {}); }
+  }
+};
+window.DURATION = 18;
 window.ready = Promise.all([document.fonts.ready, ...[...document.images].map(i => i.decode().catch(() => {}))]);
 window.seek(0);
 </script>
