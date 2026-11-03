@@ -1,0 +1,12 @@
+{
+  "name": "moveletro-black-friday",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Motion graphics Super Black Friday Moveletro (1080x1920, 15s)",
+  "scripts": { "render": "node render.js" },
+  "dependencies": {
+    "gsap": "3.12.5",
+    "@fontsource/anton": "5.0.20",
+    "@fontsource/montserrat": "5.0.19"
+  }
+}
