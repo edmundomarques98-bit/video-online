@@ -1,3 +1,5 @@
 node_modules/
 blackfriday/output/preview/
 blackfriday/assets/veo/
+blackfriday/vendedor/assets/frames/
+blackfriday/vendedor/output/preview/
