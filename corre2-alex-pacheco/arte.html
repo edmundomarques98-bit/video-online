@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Corre 2</title>
+<style>
+@font-face{font-family:Wide;src:url(fonts/Archivo-VF.ttf);font-weight:100 900;font-stretch:62% 125%}
+@font-face{font-family:Bebas;src:url(fonts/BebasNeue-Regular.ttf)}
+@font-face{font-family:Brush;src:url(fonts/PermanentMarker-Regular.ttf)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;overflow:hidden}
+#art{position:relative;overflow:hidden;background:#0a0c0c}
+.abs{position:absolute}
+.wide{font-family:Wide;font-stretch:125%;font-weight:900;text-transform:uppercase;white-space:nowrap}
+.stack{text-align:right}
+.stack div{line-height:.9;color:transparent;-webkit-text-stroke:2.5px rgba(255,255,255,.6)}
+.stack div.fill{color:#fff;-webkit-text-stroke:0}
+.brush{font-family:Brush;line-height:.85;text-transform:uppercase;white-space:nowrap}
+.info{font-family:Bebas;color:#050707;letter-spacing:.02em;line-height:1.08;white-space:nowrap}
+.info b{font-weight:400;color:#0a8f96}
+.km{display:inline-flex;align-items:baseline;justify-content:center;background:#050707;color:#1EF6BB}
+.km small{font-size:.45em;margin-left:.1em}
+.photo{border:4px dashed rgba(255,255,255,.6);display:flex;align-items:flex-start;justify-content:center;padding-top:30%;text-align:center;color:rgba(255,255,255,.8);font-family:Bebas;font-size:40px;letter-spacing:.04em;background:repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0 18px,transparent 18px 36px)}
+.hide-ph .photo{display:none}
+</style></head>
+<body><div id="art"></div>
+<script>
+const P=new URLSearchParams(location.search);
+const FMT=P.get('fmt')||'feed', PH=P.get('ph')!=='0';
+const S=FMT==='story';
+const W=1080,H=S?1920:1350;
+const art=document.getElementById('art');art.style.width=W+'px';art.style.height=H+'px';
+if(!PH)document.body.classList.add('hide-ph');
+let seed=11;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+function tornTop(x,y,w,h,j=9,step=9){const pts=[];
+ for(let i=0;i<=w;i+=step)pts.push([x+i,y+(rnd()-.5)*j+(rnd()<.08?rnd()*j*1.4:0)]);
+ pts.push([x+w,y+h],[x,y+h]);
+ return pts.map(p=>p.map(v=>v.toFixed(1)).join(',')).join(' ')}
+// ---------- layout (all numbers in px of the final canvas)
+const L=S?{
+ logo:{x:56,y:70,h:180},
+ stack:{r:44,y:110,size:96,n:3,fill:118},
+ sub:{r:48,size:30},
+ photo:{x:470,y:330,w:580,h:1020},
+ blobA:`M-60 590 C 260 510 600 560 690 720 C 780 880 620 1000 720 1100 C 840 1210 990 1170 1160 1120 L 1160 1560 L -60 1560 Z`,
+ blobB:`M700 -60 C 780 90 980 150 1160 120 L 1160 -60 Z`,
+ vert:{x:22,y:1440,size:60},
+ title:{x:96,y:700,size:100},
+ km:{x:96,y:950,size:62,gap:14},
+ date:{x:96,y:1150,dsize:60,bsize:124,rot:-5},
+ paper:{y:1500,rot:-2.2},
+ info:{x:96,y:1575,size:66},
+}:{
+ logo:{x:48,y:46,h:136},
+ stack:{r:40,y:64,size:76,n:3,fill:94},
+ sub:{r:44,size:24},
+ photo:{x:500,y:250,w:540,h:780},
+ blobA:`M-60 400 C 250 330 560 370 650 510 C 730 650 610 760 700 830 C 820 910 980 860 1160 800 L 1160 1180 L -60 1180 Z`,
+ blobB:`M690 -60 C 760 50 960 100 1160 80 L 1160 -60 Z`,
+ vert:{x:18,y:1030,size:50},
+ title:{x:84,y:478,size:88},
+ km:{x:84,y:700,size:54,gap:12},
+ date:{x:470,y:845,dsize:46,bsize:90,rot:-5},
+ paper:{y:1060,rot:-2},
+ info:{x:84,y:1110,size:52},
+};
+let h='';
+h+=`<svg class="abs" style="left:0;top:0" width="${W}" height="${H}">
+<defs>
+ <linearGradient id="g" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#0CB6C0"/><stop offset="1" stop-color="#1EF6BB"/></linearGradient>
+ <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".03" numOctaves="3" seed="9"/><feDisplacementMap in="SourceGraphic" scale="10"/></filter>
+ <filter id="grit" x="0" y="0" width="1" height="1"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="1" seed="4"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -9 6.6"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+ <radialGradient id="glow" cx=".72" cy=".28" r=".6"><stop offset="0" stop-color="#2a3131"/><stop offset="1" stop-color="#0a0c0c" stop-opacity="0"/></radialGradient>
+ <radialGradient id="vig" cx=".5" cy=".45" r=".78"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".45"/></radialGradient>
+</defs>
+<rect width="100%" height="100%" fill="url(#glow)"/>
+<g filter="url(#rough)"><path d="${L.blobA}" fill="url(#g)"/><path d="${L.blobB}" fill="url(#g)"/></g>
+<g filter="url(#grit)"><path d="${L.blobA}" fill="#000" opacity=".16"/></g>
+</svg>`;
+// vertical outlined text on the left edge (reference: rotated outline letters)
+h+=`<div class="abs wide" style="left:${L.vert.x}px;top:${L.vert.y}px;font-size:${L.vert.size}px;transform:rotate(-90deg);transform-origin:0 0;color:transparent;-webkit-text-stroke:2px rgba(5,7,7,.55);letter-spacing:.02em">ALEX PACHECO</div>`;
+// stacked words
+h+=`<div class="abs wide stack" style="right:${L.stack.r}px;top:${L.stack.y}px;font-size:${L.stack.size}px">`+
+ Array.from({length:L.stack.n},()=>`<div>CORRE</div>`).join('')+
+ `<div class="fill" style="font-size:${L.stack.fill/L.stack.size}em">CORRE 2</div>`+
+ `<div style="font-family:Wide;font-stretch:125%;font-weight:700;font-size:${L.sub.size/L.stack.size}em;color:#1EF6BB;-webkit-text-stroke:0;letter-spacing:.18em;margin-top:.5em;margin-right:-.18em">STUDIO ALEX PACHECO</div></div>`;
+// photo slot (sits in front of the stack, like the athlete over CROSSFIT)
+h+=`<div class="abs photo" style="left:${L.photo.x}px;top:${L.photo.y}px;width:${L.photo.w}px;height:${L.photo.h}px">FOTO DO ALUNO CORRENDO<br>RECORTADA, EM P&amp;B</div>`;
+// logo
+h+=`<img class="abs" src="assets/logo-alex-pacheco.png" style="left:${L.logo.x}px;top:${L.logo.y}px;height:${L.logo.h}px">`;
+// title on the mint blob
+h+=`<div class="abs wide" style="left:${L.title.x}px;top:${L.title.y}px;font-size:${L.title.size}px;line-height:.86;letter-spacing:-.02em;color:#050707">CORRIDA<br>HÍBRIDA</div>`;
+// distances
+h+=`<div class="abs wide" style="left:${L.km.x}px;top:${L.km.y}px;display:flex;gap:${L.km.gap}px">`+
+ ['5','8','10'].map(k=>`<div class="km" style="font-size:${L.km.size}px;padding:${L.km.size*.14}px ${L.km.size*.26}px">${k}<small>KM</small></div>`).join('')+`</div>`;
+// date: wide line + brush (reference: AGENDE UMA AULA + EXPERIMENTAL)
+h+=`<div class="abs" style="left:${L.date.x}px;top:${L.date.y}px;transform:rotate(${L.date.rot}deg);transform-origin:0 0">
+ <div class="wide" style="font-size:${L.date.dsize}px;color:#fff;line-height:1;text-shadow:0 3px 0 rgba(0,0,0,.35)">DOMINGO</div>
+ <div class="brush" style="font-size:${L.date.bsize}px;color:#050707;margin-top:.08em">20 de<br>Dezembro</div></div>`;
+// torn paper
+const pp=L.paper;
+const poly=tornTop(-40,pp.y,W+80,H-pp.y+80);
+h+=`<svg class="abs" style="left:0;top:0;transform:rotate(${pp.rot}deg);transform-origin:50% ${pp.y}px;overflow:visible" width="${W}" height="${H}">
+ <polygon points="${poly}" fill="#000" opacity=".35" transform="translate(0,-6)"/>
+ <polygon points="${poly}" fill="#F2F1EC"/>
+ <polygon points="${poly}" fill="#000" opacity=".1" filter="url(#grit)"/></svg>`;
+const I=L.info;
+h+=`<div class="abs" style="left:${I.x}px;top:${I.y}px;transform:rotate(${pp.rot}deg);transform-origin:0 0">
+ <div class="info" style="font-size:${I.size}px"><b>LOCAL:</b> STUDIO ALEX PACHECO</div>
+ <div class="info" style="font-size:${I.size}px"><b>INSCRIÇÃO:</b> R$ 25</div>
+ <div class="info" style="font-size:${I.size}px">CAFÉ DA MANHÃ COMPARTILHADO</div>
+ <div class="info" style="font-size:${I.size}px">BLUSA ATUAL DO STUDIO</div></div>`;
+// vignette + film grain
+h+=`<svg class="abs" style="left:0;top:0;pointer-events:none" width="${W}" height="${H}"><rect width="100%" height="100%" fill="url(#vig)"/></svg>`;
+h+=`<svg class="abs" style="left:0;top:0;mix-blend-mode:overlay;opacity:.45;pointer-events:none" width="${W}" height="${H}"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="5"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>`;
+art.innerHTML=h;
+</script></body></html>
