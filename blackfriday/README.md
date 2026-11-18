@@ -54,3 +54,16 @@ Os quadros (`vendedor/assets/frames/`) não são versionados.
 | 25,6 a 29 s | "Desconto de 30% 40% até 50%" (50% em neon, com flash e tremida) |
 | 29,1 a 30,6 s | "Vem pra" + placa Moveletro |
 | 30,6 a 34,2 s | Cartaz final: selo, Chama no Zap, telefone e "Hoje até às 18h" |
+
+---
+
+# Moveletro: Black Friday, vídeo de ofertas dos encartes (`encarte/`)
+
+Vídeo 1080×1920, 30 fps, sem áudio, com os 2 maiores descontos (% off) de cada encarte. Estrutura de varejo: selo neon, "Os maiores descontos", um card por produto (recortado do encarte original, sem redigitar preço), "Enquanto durarem os estoques" e o cartaz final com Zap, site e Instagram.
+
+- `encarte/assets/encartes/`: encartes originais
+- `encarte/assets/cards/`: cards recortados em 2× (gerados a partir dos encartes)
+- `encarte/index.html`: montagem (lista `CARDS` define os produtos e a ordem; `SLOT` é o tempo de cada um)
+- `encarte/output/moveletro-black-friday-ofertas.mp4`: vídeo final
+
+Renderizar: `cd blackfriday && npm install && node encarte/render.js`

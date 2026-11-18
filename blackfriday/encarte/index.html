@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Moveletro Black Friday Ofertas</title>
+<style>
+@font-face{font-family:Anton;src:url(../node_modules/@fontsource/anton/files/anton-latin-400-normal.woff2) format('woff2');font-weight:400}
+@font-face{font-family:Mont;src:url(../node_modules/@fontsource/montserrat/files/montserrat-latin-800-normal.woff2) format('woff2');font-weight:800}
+@font-face{font-family:Mont;src:url(../node_modules/@fontsource/montserrat/files/montserrat-latin-900-normal.woff2) format('woff2');font-weight:900}
+:root{--y:#FFD21F;--y2:#FFB800}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:#050505;font-family:Mont,sans-serif;color:#fff}
+.abs{position:absolute}
+.row{position:absolute;left:0;right:0;display:flex;justify-content:center;align-items:center}
+.anton{font-family:Anton,sans-serif;text-transform:uppercase;line-height:1}
+.yel{color:var(--y);text-shadow:0 0 30px rgba(255,200,0,.5)}
+.word{display:inline-block}
+.mask{overflow:hidden;display:block;padding-top:.2em;margin-top:-.2em}
+.pill{background:var(--y);color:#0a0a0a;font-weight:900;border-radius:999px;letter-spacing:-1px;box-shadow:0 0 40px rgba(255,200,0,.35);white-space:nowrap;overflow:hidden}
+.pill small{font-size:.55em;vertical-align:.55em;margin-right:6px}
+.wa{border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 6px #fff inset,0 10px 30px rgba(37,211,102,.35)}
+.chama{font-weight:900;line-height:.92;letter-spacing:-1px;text-transform:uppercase;text-align:left}
+.chama .l1{display:block;color:#fff}
+.chama .l2{display:block;color:var(--y);text-shadow:0 0 26px rgba(255,200,0,.55)}
+
+/* fundo */
+#bg{inset:0;background:radial-gradient(ellipse 80% 55% at 50% 42%,#2a2100 0%,#0d0a00 45%,#000 80%)}
+#rays{left:-460px;top:-460px;width:2000px;height:2840px;opacity:0;background:repeating-conic-gradient(from 0deg at 50% 50%,rgba(255,200,0,.07) 0deg 6deg,transparent 6deg 18deg);-webkit-mask-image:radial-gradient(circle at 50% 50%,#000 0%,transparent 60%);mask-image:radial-gradient(circle at 50% 50%,#000 0%,transparent 60%)}
+#floor{left:0;right:0;bottom:0;height:700px;background:radial-gradient(ellipse 70% 60% at 50% 100%,rgba(255,190,0,.28),transparent 70%)}
+.p{position:absolute;border-radius:50%;background:radial-gradient(circle,#fff6c0 0%,#ffd21f 40%,rgba(255,180,0,0) 70%)}
+#grain{inset:0;opacity:.07;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+#vignette{inset:0;background:radial-gradient(ellipse 75% 65% at 50% 50%,transparent 55%,rgba(0,0,0,.75) 100%)}
+.neon{color:transparent;-webkit-text-stroke:6px #FFE45C;filter:drop-shadow(0 0 8px #ffd21f) drop-shadow(0 0 28px rgba(255,170,0,.75))}
+#flash{inset:0;background:radial-gradient(circle at 50% 45%,#fff8d0,#ffd21f 60%,#ffb800);opacity:0}
+
+/* selo */
+#seal{left:90px;top:560px;width:900px;height:720px;transform-origin:0 0}
+#seal img{position:absolute;inset:0;width:100%;height:100%}
+#sealGlow{filter:blur(28px) brightness(1.6) saturate(1.4);opacity:0}
+#sweep{position:absolute;inset:0;-webkit-mask-image:url(../assets/selo-black-friday.png);mask-image:url(../assets/selo-black-friday.png);-webkit-mask-size:100% 100%;mask-size:100% 100%;overflow:hidden}
+#sweepBar{position:absolute;top:-20%;left:-60%;width:35%;height:140%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,230,.85),transparent);mix-blend-mode:screen}
+
+/* produtos */
+#cards{inset:0;visibility:hidden}
+.cw{position:absolute;left:70px;top:440px;width:940px;height:1076px;transform-origin:50% 60%;visibility:hidden}
+.cw .ci{position:absolute;inset:0;border-radius:28px;overflow:hidden;box-shadow:0 0 0 4px rgba(255,210,31,.9),0 0 60px rgba(255,200,0,.35),0 30px 60px rgba(0,0,0,.7)}
+.cw img{width:100%;height:100%;display:block}
+.cw .sw{position:absolute;top:-10%;left:-60%;width:30%;height:120%;transform:skewX(-18deg);background:linear-gradient(90deg,transparent,rgba(255,255,240,.55),transparent);mix-blend-mode:screen}
+.cw .ping{position:absolute;left:64px;top:66px;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;border:8px solid #ff2a2a;opacity:0}
+#zap{left:70px;right:70px;top:1560px;height:118px;border-radius:999px;background:var(--y);display:flex;align-items:center;justify-content:center;gap:22px;color:#0a0a0a;box-shadow:0 0 40px rgba(255,200,0,.35)}
+#zap .t{font-weight:900;font-size:46px;letter-spacing:-1px;text-transform:uppercase}
+#zap .n{font-weight:900;font-size:58px;letter-spacing:-1px}
+#zap .n small{font-size:.55em;vertical-align:.55em;margin-right:4px}
+#legal{left:14px;top:1520px;width:1060px;transform-origin:0 0;transform:rotate(-90deg);font-weight:800;font-size:17px;letter-spacing:.5px;color:rgba(255,255,255,.55);white-space:nowrap;text-transform:uppercase}
+
+/* cartaz final */
+#fin{inset:0;visibility:hidden}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><filter id="mb" x="-20%" y="-5%" width="140%" height="110%"><feGaussianBlur id="mbg" stdDeviation="0 0"/></filter></svg>
+<div id="stage">
+  <div id="bg" class="abs"></div>
+  <div id="rays" class="abs"></div>
+  <div id="floor" class="abs"></div>
+  <div id="particles" class="abs" style="inset:0"></div>
+
+  <!-- abertura: maiores descontos -->
+  <div id="s2" class="abs" style="inset:0;visibility:hidden">
+    <div class="row" style="top:900px"><span class="mask"><span id="s2a" class="anton word" style="font-size:190px">Os maiores</span></span></div>
+    <div class="row" style="top:1090px"><span class="mask"><span id="s2b" class="anton word yel" style="font-size:230px">descontos</span></span></div>
+    <div class="row" style="top:1380px"><div id="s2c" class="pill" style="font-size:58px;padding:16px 46px;font-family:Anton,sans-serif;font-weight:400;letter-spacing:1px;text-transform:uppercase">Parcele em até 10x no cartão*</div></div>
+  </div>
+
+  <div id="cards" class="abs">
+    <div id="cardHost"></div>
+    <div id="zap" class="abs">
+      <div class="wa" style="width:84px;height:84px;box-shadow:0 0 0 4px #fff inset"><svg width="48" height="48" viewBox="0 0 24 24"><path fill="#fff" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+      <span class="t">Chama no Zap</span><span class="n"><small>(88)</small>98836-1958</span>
+    </div>
+    <div id="legal" class="abs">Ofertas válidas enquanto durarem os estoques · Imagens meramente ilustrativas · Consulte as condições de cada produto</div>
+  </div>
+
+  <!-- urgência -->
+  <div id="urg" class="abs" style="inset:0;visibility:hidden">
+    <div class="row" style="top:820px"><span class="mask"><span id="uA" class="anton word" style="font-size:170px">Enquanto</span></span></div>
+    <div class="row" style="top:990px"><span class="mask"><span id="uB" class="anton word" style="font-size:170px">durarem os</span></span></div>
+    <div class="row" style="top:1160px"><span id="uC" class="anton neon" style="font-size:250px">estoques</span></div>
+  </div>
+
+  <!-- cartaz final -->
+  <div id="fin" class="abs">
+    <div class="row" style="top:880px;gap:30px">
+      <div class="chama" id="fchama" style="font-size:118px"><span class="mask"><span class="l1 word">Chama</span></span><span class="mask"><span class="l2 word">no Zap</span></span></div>
+      <div class="wa" id="fwa" style="width:170px;height:170px"><svg width="96" height="96" viewBox="0 0 24 24"><path fill="#fff" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+    </div>
+    <div class="row" style="top:1140px"><div class="pill" id="fpill" style="font-size:96px;padding:12px 52px"><small>(88)</small>98836-1958</div></div>
+    <div class="row" style="top:1320px"><div id="fsite" style="background:#fff;color:#111;border-radius:999px;padding:14px 44px;font-weight:800;font-size:48px;letter-spacing:-.5px">www.lojasmoveletro.com.br</div></div>
+    <div class="row" style="top:1440px"><div id="finsta" style="font-weight:800;font-size:48px;color:var(--y)">@lojasmoveletro</div></div>
+  </div>
+
+  <div id="seal" class="abs">
+    <img id="sealGlow" src="../assets/selo-black-friday.png">
+    <img id="sealImg" src="../assets/selo-black-friday.png">
+    <div id="sweep"><div id="sweepBar"></div></div>
+  </div>
+
+  <div id="flash" class="abs"></div>
+  <div id="grain" class="abs"></div>
+  <div id="vignette" class="abs"></div>
+</div>
+
+<script src="../node_modules/gsap/dist/gsap.min.js"></script>
+<script>
+gsap.ticker.lagSmoothing(0);
+const $ = s => document.querySelector(s);
+
+// ---------- produtos (cards recortados dos encartes, na ordem do vídeo) ----------
+const CARDS = [
+  '01-tv-aoc-32', '02-tv-semp-50', '03-consul-455', '04-consul-377', '05-forno-mondial',
+  '06-fogao-superglass', '07-newmaq-10kg', '08-colormaq-14kg', '09-mallory-vent-liq', '10-airfryer-jade'];
+const P0 = 4.9, SLOT = 2.8;                  // início dos produtos e tempo de cada um
+const P1 = P0 + CARDS.length * SLOT;         // fim dos produtos
+const U0 = P1, F0 = U0 + 2.3, DURATION = F0 + 4.4;
+
+const host = $('#cardHost');
+const cards = CARDS.map(n => {
+  const w = document.createElement('div'); w.className = 'cw';
+  w.innerHTML = `<div class="ci"><img src="assets/cards/${n}.png"><div class="sw"></div></div><div class="ping"></div>`;
+  host.appendChild(w);
+  return { w, sw: w.querySelector('.sw'), ping: w.querySelector('.ping') };
+});
+const ease = k => 1 - Math.pow(1 - Math.min(1, Math.max(0, k)), 3);
+const easeIn = k => Math.pow(Math.min(1, Math.max(0, k)), 3);
+function updCards(t) {
+  let blur = 0;
+  cards.forEach((c, i) => {
+    const u = t - (P0 + i * SLOT);
+    const on = u >= 0 && u < SLOT;
+    c.w.style.visibility = on ? 'visible' : 'hidden';
+    c.w.style.filter = 'none';
+    if (!on) return;
+    const first = i === 0, last = i === cards.length - 1;
+    let x = 0, r = 0, s = 1 + .045 * (u / SLOT), b = 0;
+    if (u < .34) { const k = ease(u / .34); x = (1 - k) * 1150; r = (1 - k) * 6; b = (1 - k) * 60; if (first) { x = 0; r = 0; b = 0; s *= .7 + .3 * k; } }
+    const out = SLOT - .3;
+    if (u > out && !last) { const k = easeIn((u - out) / .3); x = -k * 1150; r = -k * 6; b = k * 60; }
+    c.w.style.transform = `translateX(${x}px) rotate(${r}deg) scale(${s})`;
+    if (first && u < .34) c.w.style.opacity = ease(u / .34); else c.w.style.opacity = last && u > out ? 1 - (u - out) / .3 : 1;
+    if (b > .5) { blur = b; c.w.style.filter = 'url(#mb)'; }
+    // brilho passando e pulso no selo de % off
+    const ks = (u - .55) / .7; c.sw.style.left = (-60 + 190 * Math.min(1, Math.max(0, ks))) + '%';
+    const kp = (u - .45) / .6;
+    c.ping.style.opacity = kp > 0 && kp < 1 ? (1 - kp) : 0;
+    c.ping.style.transform = `scale(${.6 + kp * 1.4})`;
+  });
+  $('#mbg').setAttribute('stdDeviation', `${blur} 0`);
+}
+
+// ---------- partículas ----------
+let seed = 7;
+const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+const parts = [];
+for (let i = 0; i < 46; i++) {
+  const el = document.createElement('div'); el.className = 'p';
+  const sz = 6 + rnd() * 22;
+  Object.assign(el.style, { width: sz + 'px', height: sz + 'px' });
+  $('#particles').appendChild(el);
+  parts.push({ el, x: rnd() * 1080, y0: rnd() * 2100, sp: 40 + rnd() * 110, sw: 10 + rnd() * 30, ph: rnd() * 6.28, a: .25 + rnd() * .6 });
+}
+function updParticles(t) {
+  const k = Math.min(1, Math.max(0, (t - .5) / 1.2));
+  for (const p of parts) {
+    let y = (p.y0 - t * p.sp) % 2100; if (y < 0) y += 2100;
+    p.el.style.transform = `translate(${p.x + Math.sin(t * 1.3 + p.ph) * p.sw}px,${y - 100}px)`;
+    p.el.style.opacity = p.a * (.6 + .4 * Math.sin(t * 4 + p.ph)) * k;
+  }
+}
+
+// ---------- timeline ----------
+const tl = gsap.timeline({ paused: true, defaults: { ease: 'expo.out' } });
+gsap.set('#seal', { opacity: 0, scale: .6, x: 450 * .4, y: 360 * .4 });
+// selo no topo (largura 440, centralizado, y 40) e no cartaz final (largura 880, y 120)
+const TOP = { scale: 440 / 900, x: 320 - 90, y: 36 - 560 };
+const FIN = { scale: 880 / 900, x: 100 - 90, y: 110 - 560 };
+
+// ABERTURA (0 – 2.5)
+tl.to('#rays', { opacity: 1, duration: 1.2, ease: 'power2.out' }, .1)
+  .to('#seal', { scale: 1, x: 0, y: 0, duration: 1.0, ease: 'back.out(1.6)' }, .15)
+  .to('#seal', { keyframes: [
+      { opacity: .85, duration: .05 }, { opacity: .1, duration: .06 }, { opacity: 1, duration: .07 },
+      { opacity: .35, duration: .05 }, { opacity: 1, duration: .08 }, { opacity: .7, duration: .04 }, { opacity: 1, duration: .05 }],
+      ease: 'none' }, .15)
+  .to('#sealGlow', { opacity: .9, duration: .25, ease: 'power2.out' }, .55)
+  .to('#sealGlow', { opacity: .45, duration: .8, ease: 'power2.inOut' }, .8)
+  .fromTo('#sweepBar', { left: '-60%' }, { left: '130%', duration: 1.0, ease: 'power2.inOut' }, 1.0)
+  // selo sobe para o topo
+  .to('#seal', { ...TOP, duration: .8, ease: 'expo.inOut' }, 2.2);
+
+// OS MAIORES DESCONTOS (2.6 – 4.8)
+tl.set('#s2', { visibility: 'visible' }, 2.65)
+  .from('#s2a', { yPercent: 110, duration: .6 }, 2.7)
+  .from('#s2b', { yPercent: 110, duration: .6 }, 2.85)
+  .fromTo('#s2c', { clipPath: 'inset(0% 50% 0% 50% round 999px)', scale: .8 }, { clipPath: 'inset(0% 0% 0% 0% round 999px)', scale: 1, duration: .6, ease: 'back.out(1.4)' }, 3.2)
+  .fromTo('#sweepBar', { left: '-60%' }, { left: '130%', duration: .9, ease: 'power2.inOut' }, 3.4)
+  .to('#s2b', { scale: 1.06, duration: .25, yoyo: true, repeat: 1, ease: 'power2.out' }, 3.9)
+  .to('#s2', { x: -1080, duration: .45, ease: 'expo.in' }, P0 - .45)
+  .set('#s2', { visibility: 'hidden' }, P0);
+
+// PRODUTOS
+tl.set('#cards', { visibility: 'visible' }, P0)
+  .fromTo('#zap', { yPercent: 160, opacity: 0 }, { yPercent: 0, opacity: 1, duration: .6, ease: 'back.out(1.4)' }, P0 + .2)
+  .fromTo('#legal', { opacity: 0 }, { opacity: 1, duration: .4 }, P0 + .3);
+for (let i = 1; i < CARDS.length; i++) tl.fromTo('#sweepBar', { left: '-60%' }, { left: '130%', duration: .8, ease: 'power2.inOut' }, P0 + i * SLOT + .4);
+tl.to('#zap', { scale: 1.05, duration: .25, yoyo: true, repeat: 1, ease: 'power2.out' }, P0 + 5 * SLOT + 1.2);
+
+// URGÊNCIA
+tl.to('#flash', { opacity: 1, duration: .15, ease: 'power2.in' }, U0 - .15)
+  .set('#cards', { visibility: 'hidden' }, U0)
+  .set('#urg', { visibility: 'visible' }, U0)
+  .to('#flash', { opacity: 0, duration: .45, ease: 'power2.out' }, U0)
+  .from('#uA', { yPercent: 110, duration: .5 }, U0 + .1)
+  .from('#uB', { yPercent: 110, duration: .5 }, U0 + .22)
+  .fromTo('#uC', { opacity: 0, scale: .6 }, { opacity: 1, scale: 1, duration: .55, ease: 'back.out(1.8)' }, U0 + .45)
+  .to('#uC', { keyframes: [{ opacity: .3, duration: .05 }, { opacity: 1, duration: .06 }, { opacity: .5, duration: .04 }, { opacity: 1, duration: .06 }], ease: 'none' }, U0 + 1.0);
+
+// CARTAZ FINAL
+tl.to('#flash', { opacity: 1, duration: .15, ease: 'power2.in' }, F0 - .15)
+  .set('#urg', { visibility: 'hidden' }, F0)
+  .set('#fin', { visibility: 'visible' }, F0)
+  .to('#flash', { opacity: 0, duration: .45, ease: 'power2.out' }, F0)
+  .fromTo('#seal', { ...FIN, scale: FIN.scale * .85 }, { ...FIN, duration: .8, ease: 'back.out(1.8)' }, F0)
+  .from('#fchama .word', { yPercent: 110, duration: .6, stagger: .08 }, F0 + .2)
+  .from('#fwa', { scale: 0, rotation: -40, duration: .6, ease: 'back.out(2.2)' }, F0 + .35)
+  .fromTo('#fpill', { clipPath: 'inset(0% 50% 0% 50% round 999px)' }, { clipPath: 'inset(0% 0% 0% 0% round 999px)', duration: .6, ease: 'expo.inOut' }, F0 + .45)
+  .from('#fsite', { y: 40, opacity: 0, duration: .5 }, F0 + .7)
+  .from('#finsta', { y: 30, opacity: 0, duration: .5 }, F0 + .85)
+  .fromTo('#sweepBar', { left: '-60%' }, { left: '130%', duration: 1.0, ease: 'power2.inOut' }, F0 + 1.4)
+  .to('#fpill', { scale: 1.06, duration: .3, ease: 'power2.out', yoyo: true, repeat: 1 }, F0 + 2.1);
+tl.to({}, { duration: .01 }, DURATION);
+
+function updIdle(t) {
+  $('#rays').style.transform = `rotate(${t * 4}deg)`;
+  if (t > 1.6) $('#sealGlow').style.filter = `blur(28px) brightness(${1.5 + .25 * Math.sin(t * 3.2)}) saturate(1.4)`;
+}
+
+window.seek = async t => { tl.seek(t, false); updParticles(t); updIdle(t); updCards(t); };
+window.DURATION = DURATION;
+window.ready = Promise.all([document.fonts.ready, ...[...document.images].map(i => i.decode().catch(() => {}))]);
+window.seek(0);
+</script>
+</body>
+</html>
