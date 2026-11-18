@@ -67,3 +67,15 @@ Vídeo 1080×1920, 30 fps, sem áudio, com os 2 maiores descontos (% off) de cad
 - `encarte/output/moveletro-black-friday-ofertas.mp4`: vídeo final
 
 Renderizar: `cd blackfriday && npm install && node encarte/render.js`
+
+---
+
+# Moveletro: Black Friday narrado, 2 produtos (`narrado/`)
+
+Vídeo 1080×1920, 31 s, com narração de locutor gerada localmente (Piper TTS, voz pt_BR "faber", tratada com EQ e compressão). Estrutura do modelo de varejo: selo, "Os maiores descontos", TV AOC 32" e Faqueiro Brinox com texto redigitado sincronizado com a fala, "Parcele em até 10x no cartão*", "Enquanto durarem os estoques" e cartaz final.
+
+- `narrado/assets/roteiro-narracao.txt`: texto da narração (escrito com grafia fonética onde o TTS errava)
+- `narrado/assets/narracao.m4a`: narração mixada nos tempos do vídeo
+- `narrado/assets/faqueiro-brinox.png`: falta (recortar do encarte de utilidades)
+
+Renderizar: `cd blackfriday && node narrado/render.js`
